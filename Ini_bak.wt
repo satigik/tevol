@@ -20,7 +20,7 @@
 0.0E-4         RatioNb
 -6.E0          Ub
 1.0E0          RTbTe
-4.0E0          RTeTi 
+1.0E0          RTeTi 
 5.0E-3         G (Plasma parameter)
 4.0E-3         Ve2C2
 "Yes"          Lemis ("Yes" or "No ")
