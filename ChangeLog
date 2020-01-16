@@ -1,0 +1,104 @@
+2020-01-15  Sabrina Tigik  <sabrina.tigik@ufrgs.br>
+* IL: Summary: Initial IL
+	
+	* column.sh: Summary: Added a line to extract the second column
+	from IL1D.wt to IL
+	
+	* column.sh: Summary: Added a line to extract the second column
+	from IL1D.wt to IL
+	
+	* column.sh: Summary: Added a line to extract the second column
+	from IL1D.wt to IL
+	
+	* column.sh: Summary: Added a line to extract the second column
+	from IL1D.wt to IL
+	
+	* column.sh: Summary: Added a line to extract the second column
+	from IL1D.wt to IL
+	
+	* column.sh: Summary: Added a line to extract the second column
+	from IL1D.wt to IL
+	
+	* column.sh: Summary: Added a line to extract the second column
+	from IL1D.wt to IL
+	
+
+* GcollL: Summary: Initial GcollL
+	
+	
+
+* BremL: Summary: Initial BremL
+	
+	
+
+* Start2.wt: Summary: TauAdd=500
+	
+	
+
+* Ini.wt: Summary: Current Ini.wt
+	
+	* Ini.wt: Summary:I have changed the value of the plasma parameter
+	from G=1.0e-4 to G=5.0e-3
+	
+	* Ini_bak.wt: Summary: Same as Ini.wt
+	
+
+* Start.wt: Summary: TauAdd=1.0e+2
+	
+	
+
+* rm.sh: Summary: Change mod to executable file
+	
+	
+
+* stp5k.sh: Summary: Change mod to executable files
+	
+	* column.sh: Summary: Added a line to extract the second column
+	from IL1D.wt to IL
+	
+
+* stp20k.sh: Summary: Change mod to executable files
+	
+	* column.sh: Summary: Added a line to extract the second column
+	from IL1D.wt to IL
+	
+
+* stp10k.sh: Summary: Change mod to executable files
+	
+	* column.sh: Summary: Added a line to extract the second column
+	from IL1D.wt to IL
+	
+
+* run.sh: Summary: Change mod to executable files
+	
+	* column.sh: Summary: Added a line to extract the second column
+	from IL1D.wt to IL
+	
+
+* kappa_name-file.sh: Summary: Change mod to executable files
+	
+	* column.sh: Summary: Added a line to extract the second column
+	from IL1D.wt to IL
+	
+
+* column.sh: Summary: Change mod to executable files
+	
+	* column.sh: Summary: Added a line to extract the second column
+	from IL1D.wt to IL
+	
+
+* column.sh: Summary: Added a line to extract the second column
+	from IL1D.wt to IL
+	
+	
+
+* Ini_bak.wt: Summary: Same as Ini.wt
+	
+	
+
+* Ini.wt: Summary:I have changed the value of the plasma parameter
+	from G=1.0e-4 to G=5.0e-3
+	
+	This is for having a faster time evolution. It doesn't affect the
+	physical properties of the system's evolution.
+	
