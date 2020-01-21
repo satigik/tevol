@@ -746,7 +746,7 @@ contains
           call Fe_Init(Ux,Uz,Fesum,Femax,Fef,Feb)
           Fe(i,k)= Fesum
           ! Fi(i,k)= (RMiMe*RTeTi)*Kappae_i/(Kappae_i-1.)/(Pi) &
-          !      * (1+RMiMe*RTeTi*U2/(Kappae_i-1.))**(-(Kappae_i+1))
+          !      * (1.+RMiMe*RTeTi*U2/(Kappae_i-1.))**(-(Kappae_i+1))
           Fi(i,k)= (RMiMe*RTeTi)*exp(-RMiMe*RTeTi*U2)/(Pi)
        end do
     end do
@@ -786,20 +786,20 @@ contains
     real :: Zlq,Zsq,Zsoq,Ztq,Aux
     real :: Zlq2,Zsq2,Muq
     real :: ILinit,ISinit,ITinit
-    real :: Aux2,DQ
-    real :: Qi= 1.e-4, Qf= 10.
-    real, dimension(nqcd) :: ILread
-    integer :: m,i,ires
+    ! real :: Aux2,DQ
+    ! real :: Qi= 1.e-4, Qf= 6.
+    ! real, dimension(nqcd) :: ILread
+    integer :: m,i ! ,ires
 
     m= 1   ! Auxiliary quantity, for the spatial profile.
 
     ! AA= SQRT(1.+3./RTeTi)/SQRT(RMiMe)/SQRT(2.)
     ! Geff= G/(2.*SQRT(2.)*(4.*Pi)**2)
-    DQ= (Qf-Qi)/(nqcd-1)
-    do i= 1,nqcd
-       VQQ(i)= Qi+(i-1)*DQ
-    end do
-    VQQ(nqcd)= Qf
+    ! DQ= (Qf-Qi)/(nqcd-1)
+    ! do i= 1,nqcd
+    !    VQQ(i)= Qi+(i-1)*DQ
+    ! end do
+    ! VQQ(nqcd)= Qf
 
     if (AuxInitialLevel==0.) then
        ILinit= Iw0
@@ -817,19 +817,19 @@ contains
        Zsoq= AA*sqrt(VRTeTs(m))/sqrt(1.+Q**2/2.*VRTeTs(m)/VRNeNs(m))
        if(NewEff_Init=="Yes")then
 !!!!!!!!!!!!!!!!!!!!!!!! Maxwellian !!!!!!!!!!!!!!!!!!!!!!!
-          open(1,File='IL')
-          do i= 1,nqcd
-             read(1,*) ILread(i)
-          end do
-          if(Q<=5.e-3) Q=5.e-3
-          call Locate(VQQ,nqcd,Q,ires)
-          call Aitp1d2(nqcd,VQQ,ILread,Q,Aux2,ires)
-          ILinit= Aux2
-          close(1)
-          ! ILinit= (sqrt(Pi)*Geff*VRNeNs(m)**2/sqrt(VRTeTs(m)) &
-          !   * exp(-Zlq2/Q2/VRTeTs(m))/Q2/Q + BremL0) &
-          !   / (2.*sqrt(Pi)*VRNeNS(m)/sqrt(VRTeTs(m)**3)*(Zlq2) &
-          !   * exp(-Zlq2/Q2/VRTeTs(m))/Q2/Q - 2.*GcollL0)
+          ! open(1,File='IL')
+          ! do i= 1,nqcd
+          !    read(1,*) ILread(i)
+          ! end do
+          ! if(Q<=5.e-3) Q=5.e-3
+          ! call Locate(VQQ,nqcd,Q,ires)
+          ! call Aitp1d2(nqcd,VQQ,ILread,Q,Aux2,ires)
+          ! ILinit= Aux2
+          ! close(1)
+          ILinit= (sqrt(Pi)*Geff*VRNeNs(m)**2/sqrt(VRTeTs(m)) &
+            * exp(-Zlq2/Q2/VRTeTs(m))/Q2/Q + BremL0) &
+            / (2.*sqrt(Pi)*VRNeNS(m)/sqrt(VRTeTs(m)**3)*(Zlq2) &
+            * exp(-Zlq2/Q2/VRTeTs(m))/Q2/Q - 2.*GcollL0)
           ISinit= (sqrt(Pi)*(AA/2.)*Geff &
                * sqrt(VRTeTs(m)/VRNeNs(m))*VRNeNs(m)*VRTeTs(m) &
                * (exp(-Zsq2/Q2/VRTeTs(m))/sqrt(VRTeTS(m)) &
@@ -885,7 +885,7 @@ contains
           !      * SQRT(VRTeTs(m)/VRNeNs(m))*VRNeNs(m)*VRTeTs(m) &
           !      * ((1.+Zsq2/Q2/VRTeTs(m)/(Kappae-1.5))**(-Kappae)/SQRT(VRTeTS(m)*Kappae) &
           !      * GAMMA(Kappae)/GAMMA(Kappae-0.5) &
-          !      + (1+Zsq2/Q2/(Kappai-1.5)*RMiMe/VRTiTs(m))**(-(Kappai)) &
+          !      + (1.+Zsq2/Q2/(Kappai-1.5)*RMiMe/VRTiTs(m))**(-(Kappai)) &
           !      * GAMMA(Kappai)/GAMMA(Kappai-0.5) &
           !      * SQRT(RMiMe/VRTiTs(m)/(Kappai-1.5))) + BremS0) &
           !      / (2.*SQRT(Pi)*(AA/2.)*Zlq*Zsq &
@@ -893,7 +893,7 @@ contains
           !      * ((1.+Zsq2/Q2/VRTeTs(m)/(Kappae-1.5))**(-(Kappae+1.)) &
           !      / SQRT(VRTeTs(m)**3*(Kappae-1.5)**3) &
           !      * GAMMA(Kappae+1.)/GAMMA(Kappae-0.5) &
-          !      + (1+Zsq2/Q2/(Kappai-1.5)*RMiMe/VRTiTs(m))**(-(Kappai+1)) &
+          !      + (1.+Zsq2/Q2/(Kappai-1.5)*RMiMe/VRTiTs(m))**(-(Kappai+1)) &
           !      * GAMMA(Kappai+1.)/GAMMA(Kappai-0.5) &
           !      * SQRT(RMiMe/VRTiTs(m)/(Kappai-1.5)**3)/VRTiTs(m)) - 2.*GcollS0)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -7424,7 +7424,7 @@ contains
        integer, parameter :: nqp= 1024,nmu=64 !64 !odd
        real, dimension(nmu) :: Vmu,VintGcL,VintGcS
        real :: AuxSig
-       real :: Qi= 1.E-4, Qf= 10.E0
+       real :: Qi= 1.E-4, Qf= 6.E0
 
        m= 1   ! Auxiliary to the space profiles (just one point, for the moment)
        RTemp0= VRTeTs(m)
@@ -7697,7 +7697,7 @@ contains
        integer :: i,j,it
        integer :: m,sigma,ires
        integer, parameter :: nqp= 1024,nmu= 64 !odd
-       real :: Qi= 1.E-4, Qf= 10.E0
+       real :: Qi= 1.E-4, Qf= 6.E0
        !real, parameter :: Qi= 1.E0, Qf= 1.E2
        real, dimension(nmu) :: Vmu,VintL,VintS
        real, dimension(nqx,nqz) :: BremssL,BremssS
@@ -7748,9 +7748,6 @@ contains
              end do
              ! call Simpson(Vmu,VintL,nmu,ResL)
              call Simpson(Vmu,VintS,nmu,ResS)
-             ! call Qsimp(Aux_BremL,1.E-4,4.,Res1L)
-             ! call Qsimpb(Aux_BremL,4.,Infinity,Res2L)
-             ! ResL=Res1L+Res2L
              ! BremL1D(i)= 6.0*Pi**1.5/Zlq**2*VRNeNs(m)**4/VRTeTs(m)**2.5*Geff**2/Q2/Q2*ResL
              ! BremL1D(i)=384.*sqrt(pi)/Zlq**2*(1.-1./RMiMe/VRTiTs(m))**2 &
              !      * VRNeNs(m)**4/VRTeTs(m)*Geff**2/Q2*ResL
