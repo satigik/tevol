@@ -7,13 +7,13 @@
 # #time ./inh &
 # time ./stp5k &
 
-# ### ifort for serial code running at UFRGS (i7-3770 Ivy Bridge) ###
-# ifort -c -double-size 64 -xIVYBRIDGE -mtune=ivybridge -fma zetaFunc_m.f90
-# ifort -c -double-size 64 -xIVYBRIDGE -mtune=ivybridge -fma Qsimp_m.f90
-# ifort -double-size 64 -xIVYBRIDGE -mtune=ivybridge -fma wt_lst_cdbk.f90 -o inh Qsimp_m.o zetaFunc_m.o
-# rm *.mod
-# #time ./inh &
-# time ./stp5k &
+### ifort for serial code running at UFRGS (i7-3770 Ivy Bridge) ###
+ifort -c -double-size 64 -xIVYBRIDGE -mtune=ivybridge -fma zetaFunc_m.f90
+ifort -c -double-size 64 -xIVYBRIDGE -mtune=ivybridge -fma Qsimp_m.f90
+ifort -double-size 64 -xIVYBRIDGE -mtune=ivybridge -fma wt_lst_cdbk.f90 -o tevols Qsimp_m.o zetaFunc_m.o
+rm *.mod
+# time ./tevols &
+time ./stp5k &
 
 # ### ifort for serial code running at MSI laptop (i7-8750H Coffeelake) ###
 # ifort -c -double-size 64 -xCOFFEELAKE -mtune=coffeelake -fma zetaFunc_m.f90
@@ -23,19 +23,19 @@
 # time ./new &
 # # time ./stp5k &
 
-### ifort for serial code running at MSI laptop (i7-8750H Coffeelake) ###
-ifort -c -double-size 64 -xCOFFEELAKE -mtune=coffeelake -fma zetaFunc_m.f90
-ifort -c -double-size 64 -xCOFFEELAKE -mtune=coffeelake -fma Qsimp_m.f90
-ifort -double-size 64  -xCOFFEELAKE -mtune=coffeelake -fma wt_lst_cdbk.f90 -o tevol Qsimp_m.o zetaFunc_m.o
-rm *.mod
-# time ./tevol & 
-# rm WARNING*
+# ### ifort for serial code running at MSI laptop (i7-8750H Coffeelake) ###
+# ifort -c -double-size 64 -xCOFFEELAKE -mtune=coffeelake -fma zetaFunc_m.f90
+# ifort -c -double-size 64 -xCOFFEELAKE -mtune=coffeelake -fma Qsimp_m.f90
+# ifort -double-size 64  -xCOFFEELAKE -mtune=coffeelake -fma wt_lst_cdbk.f90 -o tevol Qsimp_m.o zetaFunc_m.o
+# rm *.mod
+# # time ./tevol & 
+# # rm WARNING*
+# # echo 'Finished' &
+# time ./stp5k.sh
+# # rm WARNING*
 # echo 'Finished' &
-time ./stp5k.sh
-rm WARNING*
-echo 'Finished' &
-## -xCOFFEELAKE -mtune=coffeelake -traceback
-## -double-size 64 -fma -fprotect-parens -fp-model precise
+# ## -xCOFFEELAKE -mtune=coffeelake -traceback
+# ## -double-size 64 -fma -fprotect-parens -fp-model precise
 
 # ### ifort for serial code running at MSI laptop (i7-8750H Coffeelake) ###
 # ifort -c -double-size 64 -xCOFFEELAKE -mtune=coffeelake -fma zetaFunc_m.f90
